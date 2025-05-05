@@ -6,7 +6,9 @@
     "engines": {
         "node": "22.15.0"
     },
-    "scripts": {},
+    "scripts": {
+        "start": "node ./src/service.js"
+    },
     "author": "Nick Snyder",
     "license": "MIT",
     "dependencies": {

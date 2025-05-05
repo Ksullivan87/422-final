@@ -37,5 +37,5 @@ docker compose up -d
 
 ## Usage
 
-Once the container is composed and running, the volumes should be available to recieve and deliver files. This is only a `CSV` to `JSON` parser, and as such the system will not accept any file formats aside from `CSV`. Once a `CSV` file is placed into the `inbound` folder, the system will automaticall parse and translate the file into `JSON`, that `JSON` file will be available in the `Outbound` folder. The original `CSV` file will also be made available in the `Processed` folder. 
+Once the container is composed and running, the volumes should be available to recieve and deliver files. This is only a `CSV` to `JSON` parser, and as such the system will not accept any file formats aside from `CSV`. Once a `CSV` file is placed into the `inbound` folder, the system will automaticall parse and translate the file into `JSON`, producing 1 object per corresponding row in the original csv. The keys of the object are based on your `CSV` headers, and the values will be the values in the csv row. The `JSON` file will be available in the `Outbound` folder. The original `CSV` file will also be made available in the `Processed` folder. 
 

@@ -34,6 +34,9 @@ module.exports = {
                 console.info(path);
                 parser.processChange(path);
             })
-            .on('error', (err) => { });
+            .on('error', (err) => { 
+            console.error('\x1b[38;2;255;0;0m%s\x1b[0m', 'Uncaught exception:', err);
+
+            });
     }
 };

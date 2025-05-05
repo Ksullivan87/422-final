@@ -46,6 +46,7 @@ module.exports = {
                 trim: true
             }))
             .on('data', (row) => {
+                //console.log(row); //just to get an idea of the data formatting in json 
                 rows.push(row);
             })
             .on('end', () => {
@@ -59,6 +60,9 @@ module.exports = {
                     });
                 });
             })
-            .on('error', (err) => { });
+            .on('error', (err) => { 
+            console.error('\x1b[38;2;255;0;0m%s\x1b[0m', 'Uncaught exception:', err);
+
+            });
     }
 };

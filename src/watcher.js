@@ -1,5 +1,5 @@
 const parser = require('./parser');
-const chokidar = require('chokidar');
+const chokidar = require('chokidar'); 
 
 const ignore = [
     '.DS_Store',
@@ -21,17 +21,22 @@ module.exports = {
         console.info();
 
         // Use chokidar because fs.watch is a pile of garbage
+        // thats not nice im sure they're trying their best
         const watcher = chokidar.watch(watched, {
             ignored: (path, stats) => {
-                return stats?.isFile() && !path.endsWith('.csv')
+                return stats?.isFile() && !path.endsWith('.csv') //docker compose doesnt like the ? here for some reason
             },
             persistent: true
         });
 
         watcher
             .on('add', (path) => {
+                console.info(path);
                 parser.processChange(path);
             })
-            .on('error', (err) => { });
+            .on('error', (err) => { 
+            console.error('\x1b[38;2;255;0;0m%s\x1b[0m', 'Uncaught exception:', err);
+
+            });
     }
 };

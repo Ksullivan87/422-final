@@ -9,7 +9,7 @@ exitHandler.setSafeExits();
 
 // Getting full paths for all three directories
 const watched = path.join(__dirname, config.watched);
-const output = path.join(__dirname, config.output);
+const output = path.join(__dirname, config.output); 
 const processed = path.join(__dirname, config.processed);
 
 console.info();

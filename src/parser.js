@@ -6,18 +6,38 @@ module.exports = {
     watched: null,
     output: null,
     processed: null,
+    // function to set watched directory
     setWatched: function(watch) {
         this.watched = watch;
     },
-    setOutput: function (out) {
+    //function to set output directory
+    setOutput: function (out) { 
         this.output = out;
     },
+    //function to set processed directory
     setProcessed: function (proc) {
         this.processed = proc;
     },
+    // function to get watched directory
+    getWatched: function() {
+        return this.watched;
+    },
+    //function to set output directory
+    getOutput: function () { 
+        return this.output;
+    },
+    //function to set processed directory
+    getProcessed: function () {
+        return this.processed;
+    },
+
+    //function to parse csv to json file, returns json to output and csv to processed
     processChange: function (file) {
         const outputFile = path.resolve(this.output, path.basename(file).replace('.csv', '.json'));
+        console.info(`Outbound File: `, outputFile);
         const processedFile = path.resolve(this.processed, path.basename(file));
+        console.info(`Processed File: `, processedFile);
+
         let rows = [];
 
         fs.createReadStream(file)
@@ -26,6 +46,7 @@ module.exports = {
                 trim: true
             }))
             .on('data', (row) => {
+                //console.log(row); //just to get an idea of the data formatting in json 
                 rows.push(row);
             })
             .on('end', () => {
@@ -39,6 +60,9 @@ module.exports = {
                     });
                 });
             })
-            .on('error', (err) => { });
+            .on('error', (err) => { 
+            console.error('\x1b[38;2;255;0;0m%s\x1b[0m', 'Uncaught exception:', err);
+
+            });
     }
 };
